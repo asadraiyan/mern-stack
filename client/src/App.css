@@ -3,3 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+.logo{
+  width: 145px;
+  margin-left: 10px;
+}

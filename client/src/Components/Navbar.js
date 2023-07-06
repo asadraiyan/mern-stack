@@ -1,30 +1,33 @@
 import React from 'react'
 import "bootstrap/dist/css/bootstrap.css"
+import { Link } from "react-router-dom";
+import logo from "../Components/Images/logo1.png"
+
 const Navbar = () => {
   return (
     <>
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+     <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <Link to="#" className="navbar-brand"><img className='logo' src={logo} alt="logo" /></Link>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/#">Home <span class="sr-only"></span></a>
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav ms-auto">
+      <li className="nav-item active">
+        <Link to="/" className="nav-link" >Home <span className="sr-only"></span></Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/#">About</a>
+      <li className="nav-item">
+        <Link to="/About" className="nav-link">About</Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/#">Contact</a>
+      <li className="nav-item">
+        <Link to="/Contact" className="nav-link">Contact</Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/#">Login</a>
+      <li className="nav-item">
+        <Link to="/Login" className="nav-link">Login</Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/#">Registration</a>
+      <li className="nav-item">
+        <Link to="/Signup" className="nav-link">Registration</Link>
       </li>
     </ul>
   </div>
