@@ -27,6 +27,7 @@ res.send("Hello world from the server app.js")
 app.get("/about", middleware, (req,res)=>{
     console.log("Hello my about")
 res.send("Hello world from the about server")
+// res.cookie("test", "asad")
 })
 
 
