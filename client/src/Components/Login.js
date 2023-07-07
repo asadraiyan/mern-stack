@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <>
-      <section className="signup-container">
+      <section className="main-container">
         <div className="signup-box">
         <div className="signup-img">
           <figure>
@@ -29,7 +29,7 @@ const Login = () => {
                 <input type="password" name="password" className="input-field" autoComplete="off" placeholder="Your Password" />
               </div>
               <div className="button">
-                <input type="submit" name="signup" className="submit-btn" value= "Login" />
+                <input type="submit" name="signup" className="login-btn" value= "Login" />
               </div>
             </form>
           </div>

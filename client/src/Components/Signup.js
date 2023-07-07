@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Signup = () => {
   return (
     <>
-      <section className="signup-container">
+      <section className="main-container">
         <div className="signup-box">
           <div className="signup-content">
             <h2 className="title">Sign Up</h2>

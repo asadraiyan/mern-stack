@@ -13,7 +13,7 @@
   font-weight: bold;
   font-size: 35px;
 }
-.signup-container{
+.main-container{
   display: flex;
   height: 90.8vh;
   width: 100%;
@@ -104,4 +104,58 @@
   flex-direction: column;
   justify-content: space-between;
   margin-top: 15px;
+}
+.login-btn{
+  font-size: 18px;
+  width: 100px;
+  padding: 5px 2px 5px 2px;
+  background-color: #0d6efd;
+  border-radius: 3px;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+.contact-box{
+  display: flex;
+  /* border: 2px solid red; */
+  width: 75%;
+  justify-content: space-evenly;
+
+}
+.info-box{
+  border: 2px solid rgb(241, 235, 235);
+  box-shadow: 2px 2px 2px 2px rgb(219, 216, 216);
+  
+  display: flex;
+  flex-direction: row;
+  width: 325px;
+  height: 75px;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+}
+.phone-info{
+  display: flex;
+  flex-direction: column;
+  font-weight:500;
+  font-size: 18px;
+}
+.phone-img{
+  width: 25px;
+  height: 40px;
+}
+.phone-style{
+  font-weight:bold;
+  font-size: 20px;
+}
+.num-style{
+  font-size: 14px;
+}
+.email-img{
+  width: 35px;
+  height: 40px;
+}
+.address-img{
+  width: 36px;
+  height: 40px;
 }
