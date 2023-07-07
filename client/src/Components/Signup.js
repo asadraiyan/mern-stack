@@ -36,13 +36,13 @@ const Signup = () => {
               </div>
               <div className="input-form">
                 <label htmlFor="password">
-                  <i class="zmdi zmdi-account material-icons-name"></i>
+                  <i class="zmdi zmdi-lock material-icons-name"></i>
                 </label>
                 <input type="password" name="password" className="input-field" autoComplete="off" placeholder="Your Password" />
               </div>
               <div className="input-form">
                 <label htmlFor="confirmpassword">
-                  <i class="zmdi zmdi-account material-icons-name"></i>
+                  <i class="zmdi zmdi-lock material-icons-name"></i>
                 </label>
                 <input type="password" name="confirmPassword" className="input-field" autoComplete="off" placeholder="Confirm Your Password" />
               </div>
