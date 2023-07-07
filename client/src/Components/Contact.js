@@ -29,6 +29,42 @@ const Contact = () => {
             </div>
           </div>
         </div>
+
+        <div className="contact-container">
+          <div className="small-container">
+            <h1>Get in Touch</h1>
+            <form className="contact-field">
+              <div className="input-text">
+                <input
+                  type="text"
+                  className="input-section"
+                  placeholder="Your Name"
+                  autoComplete="off"
+                />
+                <input
+                  type="email"
+                  className="input-section"
+                  placeholder="Your Email"
+                  autoComplete="off"
+                />
+                <input
+                  type="text"
+                  className="input-section"
+                  placeholder="Your Phone No."
+                  autoComplete="off"
+                />
+              </div>
+              <div className="button-section">
+                <textarea
+                  className="msg-txt"
+                  rows="6"
+                  placeholder="Type your message here"
+                ></textarea>
+                <button className="submit-contact-btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </>
   );

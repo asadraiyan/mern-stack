@@ -17,8 +17,8 @@
   display: flex;
   height: 90.8vh;
   width: 100%;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
 }
 .signup-box{
@@ -99,7 +99,7 @@
 }
 .login-form{
   /* border: 2px solid orange; */
-  height: 142px;
+  height: 145px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -158,4 +158,56 @@
 .address-img{
   width: 36px;
   height: 40px;
+}
+.contact-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid greenyellow; */
+  width: 50%;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px 5px rgb(203, 200, 200);
+}
+.small-container{
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 350px;
+  width: 80%
+}
+
+.button-section{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.input-text{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.input-section{
+  height: 35px;
+  font-size: 17px;
+  padding: 5px;
+  outline: none;
+}
+.msg-txt{
+  font-size: 17px;
+  padding: 5px;
+  outline: none;
+}
+.submit-contact-btn{
+  font-size: 18px;
+  width: 100px;
+  padding: 5px 8px 5px 8px;
+  background-color: #0d6efd;
+  border-radius: 3px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  margin-top: 25px;
 }
