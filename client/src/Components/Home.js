@@ -2,9 +2,9 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>
-      <p className="pt-5">WELCOME</p>
-      <h1>We are the MERN Developer</h1>
+    <div className='home-container'>
+      <p>WELCOME</p>
+      <h1>The offical website of MERN</h1>
     </div>
   )
 }
