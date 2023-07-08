@@ -41,11 +41,11 @@ const Signup = () => {
 
     const data = await res.json()
     if(res.status === 422 || !data){
-      window.alert("Invalid registration")
-      console.log("Registration invalid")
+      window.alert(data.error)
+      console.log("Invalid Registration ")
     }
     else{
-      window.alert("Registration successfull")
+      window.alert(data.message)
       console.log("Registration successfull")
       navigate("/login")
     }

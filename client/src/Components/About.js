@@ -1,16 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import Asadimg from "../Components/Images/asad.jpg";
 
 const About = () => {
+  const navigate = useNavigate();
+
+  const callAboutPage = async () => {
+    try {
+      const res = await fetch("/about", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (error) {
+      console.log(error);
+      navigate("/login");
+    }
+  };
+
+  useEffect(() => {
+    callAboutPage();
+  }, []);
+
   return (
     <>
       <div className="main-container">
-        <div className="about-container">
+        <form method="GET" className="about-container">
           <div className="img-container">
             <div className="profile-img">
               <img src={Asadimg} alt="Asadimg" className="asad-img" />
@@ -98,7 +129,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );

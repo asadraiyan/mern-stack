@@ -2,8 +2,12 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+// const cookieParser = require('cookie-parser')
+
 const authenticate = require("../middleware/authenticate")
 
+
+// const app = express();
 require("../db/conn");
 const User = require("../model/userSchema");
 
@@ -15,14 +19,14 @@ router.post("/register", async (req, res) => {
   const { name, email, phone, work, password, confirmPassword } = req.body;
 
   if (!name || !email || !phone || !work || !password || !confirmPassword) {
-    return res.status(422).json({ erorr: "Please fill all the details" });
+    return res.status(422).json({ error: "Please fill all the details" });
   }
 
   try {
     const userExist = await User.findOne({ email: email });
 
     if (userExist) {
-      return res.status(422).json({ erorr: "Email is already exist" });
+      return res.status(422).json({ error: "Email is already exist" });
     }
 
     const user = new User({
@@ -46,7 +50,7 @@ router.post("/signin", async (req,res)=>{
     try {
         const {email, password} = req.body
         if (!email || !password){
-            return res.status(422).json({ erorr: "Please fill all the details" });
+            return res.status(422).json({ error: "Please fill all the details" });
 
         }
         const userLogin = await User.findOne({ email: email });
@@ -66,14 +70,14 @@ router.post("/signin", async (req,res)=>{
           })
         
           if(!isMatch){
-              res.status(400).json({erorr: "Invalid credential"})
+              res.status(400).json({error: "Invalid credential"})
           }
           else{
               res.json({message:"User is signin successfully"})
           }
         }
         else{
-          res.status(400).json({erorr: "Invalid credential"})
+          res.status(400).json({error: "Invalid credential"})
         }
 
        
@@ -85,10 +89,14 @@ router.post("/signin", async (req,res)=>{
 
 
 // About page
-router.get("/about", authenticate, (req,res)=>{
+router.get("/about", authenticate, async (req,res)=>{
+  res.send(req.rootUser)
   console.log("Hello my about")
-res.send(req.rootUser)
 // res.cookie("test", "asad")
 })
+
+// router.use(cookieParser())
+
+
 
 module.exports = router;

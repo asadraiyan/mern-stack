@@ -17,17 +17,18 @@ const Login = () => {
         "Content-Type" : "application/json"
       },
       body : JSON.stringify({
-     email, password
+        email, password
       })
     })
 
     const data = await res.json()
-    if(res.status === 400 || !data){
-      window.alert("Invalid credentials")
+    console.log("data =", data)
+    if(data.error || res.status === 400) {
+      window.alert(data.error)
       console.log("Invalid credentials")
     }
     else{
-      window.alert("Login successfull")
+      window.alert(data.message)
       console.log("Login successfull")
       navigate("/")
     }
