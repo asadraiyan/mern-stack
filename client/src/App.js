@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css"
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import About from './Components/About';
