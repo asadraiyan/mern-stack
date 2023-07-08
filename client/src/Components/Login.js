@@ -18,13 +18,13 @@ const Login = () => {
             <form className="login-form">
               <div className="input-form">
                 <label htmlFor="email">
-                  <i class="zmdi zmdi-email material-icons-name"></i>
+                  <i className="zmdi zmdi-email material-icons-name"></i>
                 </label>
                 <input type="email" name="email" className="input-field" autoComplete="off" placeholder="Your Email" />
               </div>
               <div className="input-form">
                 <label htmlFor="password">
-                  <i class="zmdi zmdi-lock material-icons-name"></i>
+                  <i className="zmdi zmdi-lock material-icons-name"></i>
                 </label>
                 <input type="password" name="password" className="input-field" autoComplete="off" placeholder="Your Password" />
               </div>
