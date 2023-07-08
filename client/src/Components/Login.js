@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Loginimg from "../Components/Images/login-img.jpg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const navigate = useNavigate()
+
+  const handleLogin = async (e)=>{
+    e.preventDefault()
+    const res = await fetch("/signin", {
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+     email, password
+      })
+    })
+
+    const data = await res.json()
+    if(res.status === 400 || !data){
+      window.alert("Invalid credentials")
+      console.log("Invalid credentials")
+    }
+    else{
+      window.alert("Login successfull")
+      console.log("Login successfull")
+      navigate("/")
+    }
+  }
   return (
     <>
       <section className="main-container">
@@ -15,21 +44,21 @@ const Login = () => {
             </div>
           <div className="login-content">
             <h2 className="title">Login</h2>
-            <form className="login-form">
+            <form method='POST' className="login-form">
               <div className="input-form">
                 <label htmlFor="email">
                   <i className="zmdi zmdi-email material-icons-name"></i>
                 </label>
-                <input type="email" name="email" className="input-field" autoComplete="off" placeholder="Your Email" />
+                <input type="email" name="email" value={email} onChange={(e)=> setEmail(e.target.value)} className="input-field" autoComplete="off" placeholder="Your Email" />
               </div>
               <div className="input-form">
                 <label htmlFor="password">
                   <i className="zmdi zmdi-lock material-icons-name"></i>
                 </label>
-                <input type="password" name="password" className="input-field" autoComplete="off" placeholder="Your Password" />
+                <input type="password" name="password" value={password} onChange={(e)=> setPassword(e.target.value)} className="input-field" autoComplete="off" placeholder="Your Password" />
               </div>
               <div className="button">
-                <input type="submit" name="signup" className="login-btn" value= "Login" />
+                <input type="submit" name="signup" onClick={handleLogin} className="login-btn" value= "Login" />
               </div>
             </form>
           </div>
