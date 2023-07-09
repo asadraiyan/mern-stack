@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -6,8 +6,13 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Asadimg from "../Components/Images/asad.jpg";
+import Userimg from "../Components/Images/user.png";
 
 const About = () => {
+
+  const [userdata, setUserData] = useState({})
+
+
   const navigate = useNavigate();
 
   const callAboutPage = async () => {
@@ -23,6 +28,7 @@ const About = () => {
 
       const data = await res.json();
       console.log(data);
+      setUserData(data)
 
       if (!res.status === 200) {
         const error = new Error(res.error);
@@ -44,7 +50,7 @@ const About = () => {
         <form method="GET" className="about-container">
           <div className="img-container">
             <div className="profile-img">
-              <img src={Asadimg} alt="Asadimg" className="asad-img" />
+              <img src={userdata.name === "Asad Raiyan" ? Asadimg : Userimg } alt="Asadimg" className="asad-img" />
             </div>
             <h2 className="title-name">Social Links</h2>
             <div className="social-container">
@@ -98,8 +104,8 @@ const About = () => {
           <div className="name-container">
             <div className="about-info">
               <div className="personal-detail">
-                <h3>Asad Raiyan</h3>
-                <span className="same-color">Web Developer</span>
+                <h3>{userdata.name}</h3>
+                <span className="same-color">{userdata.work}</span>
                 <span>Ranking: 1/10</span>
               </div>
               <div className="edit-container">
@@ -121,11 +127,11 @@ const About = () => {
                 <p>Profession</p>
               </div>
               <div className="detail-numbers">
-                <p className="same-color">778965412365</p>
-                <p className="same-color">Asad Raiyan</p>
-                <p className="same-color">asadraiyan001@gmail.com</p>
-                <p className="same-color">8181079906</p>
-                <p className="same-color">Web Developer</p>
+                <p className="same-color">{userdata._id}</p>
+                <p className="same-color">{userdata.name}</p>
+                <p className="same-color">{userdata.email}</p>
+                <p className="same-color">{userdata.phone}</p>
+                <p className="same-color">{userdata.work}</p>
               </div>
             </div>
           </div>
