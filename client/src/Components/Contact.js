@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import Phoneimg from "../Components/Images/phone.jpg";
 import Emailimg from "../Components/Images/email.jpg";
 import Addressimg from "../Components/Images/address1.png";
+import { json } from "react-router-dom";
 const Contact = () => {
-
-  
-  const [userdata, setUserData] = useState({})
-
+  const [userdata, setUserData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
   const callHomePage = async () => {
     try {
@@ -19,7 +22,12 @@ const Contact = () => {
 
       const data = await res.json();
       console.log(data);
-      setUserData(data)
+      setUserData({
+        ...userdata,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      });
 
       if (!res.status === 200) {
         const error = new Error(res.error);
@@ -33,6 +41,45 @@ const Contact = () => {
   useEffect(() => {
     callHomePage();
   }, []);
+
+  const handleInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUserData({
+      ...userdata,
+      [name]: value,
+    });
+  };
+
+  // send the message data to database
+
+  const handleContact = async (e) => {
+    e.preventDefault();
+
+    const { name, email, phone, message } = userdata;
+
+    const res = await fetch("/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        message,
+      }),
+
+    });
+
+    const data = await res.json();
+    if (!data) {
+      console.log("Message not send");
+    } else {
+      alert("Message send successfully");
+      setUserData({...userdata, message : ""})
+    }
+  };
 
   return (
     <>
@@ -72,6 +119,8 @@ const Contact = () => {
                   placeholder="Your Name"
                   autoComplete="off"
                   value={userdata.name}
+                  name="name"
+                  onChange={handleInputChange}
                 />
                 <input
                   type="email"
@@ -79,6 +128,8 @@ const Contact = () => {
                   placeholder="Your Email"
                   autoComplete="off"
                   value={userdata.email}
+                  name="email"
+                  onChange={handleInputChange}
                 />
                 <input
                   type="text"
@@ -86,6 +137,8 @@ const Contact = () => {
                   placeholder="Your Phone No."
                   autoComplete="off"
                   value={userdata.phone}
+                  name="phone"
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="button-section">
@@ -93,8 +146,13 @@ const Contact = () => {
                   className="msg-txt"
                   rows="6"
                   placeholder="Type your message here"
+                  value={userdata.message}
+                  name="message"
+                  onChange={handleInputChange}
                 ></textarea>
-                <button className="submit-contact-btn">Submit</button>
+                <button className="submit-contact-btn" onClick={handleContact}>
+                  Submit
+                </button>
               </div>
             </form>
           </div>

@@ -100,6 +100,33 @@ router.get("/getdata", authenticate, async (req,res)=>{
 })
 
 
+router.get("/contact", authenticate, async (req,res)=>{
+try {
+
+  const { name, email, phone, message } = req.body;
+
+  if(!name || !email || !phone || !message){
+    console.log("error in contact form")
+    return res.status(422).json({ error: "Please fill the contact form" });
+  }
+  
+  const userContact = await User.findOne({ _id: req.userID });
+
+  if(userContact){
+
+    const userMessage =  await userContact.addMessage(name, email, phone, message)
+    
+  }
+
+} catch (error) {
+  console.log(error)
+}
+
+})
+
+
+
+
 
 
 
