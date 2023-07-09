@@ -2,12 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-// const cookieParser = require('cookie-parser')
-
 const authenticate = require("../middleware/authenticate")
 
-
-// const app = express();
 require("../db/conn");
 const User = require("../model/userSchema");
 
@@ -92,10 +88,18 @@ router.post("/signin", async (req,res)=>{
 router.get("/about", authenticate, async (req,res)=>{
   res.send(req.rootUser)
   console.log("Hello my about")
-// res.cookie("test", "asad")
+
 })
 
-// router.use(cookieParser())
+
+// Contact & Home page
+router.get("/getdata", authenticate, async (req,res)=>{
+  res.send(req.rootUser)
+  console.log("Hello my contact")
+
+})
+
+
 
 
 

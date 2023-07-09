@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Phoneimg from "../Components/Images/phone.jpg";
 import Emailimg from "../Components/Images/email.jpg";
 import Addressimg from "../Components/Images/address1.png";
 const Contact = () => {
+
+  
+  const [userdata, setUserData] = useState({})
+
+
+  const callHomePage = async () => {
+    try {
+      const res = await fetch("/getdata", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+      console.log(data);
+      setUserData(data)
+
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    callHomePage();
+  }, []);
+
   return (
     <>
       <div className="main-container">
@@ -40,18 +71,21 @@ const Contact = () => {
                   className="input-section"
                   placeholder="Your Name"
                   autoComplete="off"
+                  value={userdata.name}
                 />
                 <input
                   type="email"
                   className="input-section"
                   placeholder="Your Email"
                   autoComplete="off"
+                  value={userdata.email}
                 />
                 <input
                   type="text"
                   className="input-section"
                   placeholder="Your Phone No."
                   autoComplete="off"
+                  value={userdata.phone}
                 />
               </div>
               <div className="button-section">

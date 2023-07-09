@@ -185,17 +185,19 @@
 .button-section{
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 35px;
+  /* border: 2px solid red; */
 }
 .input-text{
   display: flex;
-  gap: 10px;
+  gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 10px;
 }
 .input-section{
   height: 35px;
+  /* width: 200px; */
   font-size: 17px;
   padding: 5px;
   outline: none;
