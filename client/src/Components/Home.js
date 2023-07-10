@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { UserContext } from "../App";
 
 const Home = () => {
 
   const [userName, setUserName] = useState("")
   const [show, setShow] = useState(false)
+
+  const { state, dispatch } = useContext(UserContext);
 
   const callHomePage = async () => {
     try {
@@ -17,9 +20,11 @@ const Home = () => {
       const data = await res.json();
       console.log(data);
       setUserName(data.name);
+      dispatch({ type: "USER", payload: true });
       setShow(true)
 
       if (!res.status === 200) {
+        dispatch({ type: "USER", payload: false });
         const error = new Error(res.error);
         throw error;
       }

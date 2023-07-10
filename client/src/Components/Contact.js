@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Phoneimg from "../Components/Images/phone.jpg";
 import Emailimg from "../Components/Images/email.jpg";
 import Addressimg from "../Components/Images/address1.png";
+import { UserContext } from "../App";
 const Contact = ({notify}) => {
   const [userdata, setUserData] = useState({
     name: "",
@@ -9,6 +10,8 @@ const Contact = ({notify}) => {
     phone: "",
     message: "",
   });
+
+  const { state, dispatch } = useContext(UserContext);
 
   const callContactPage = async () => {
     try {
@@ -28,11 +31,15 @@ const Contact = ({notify}) => {
         phone: data.phone,
       });
 
+      dispatch({ type: "USER", payload: true });
+
       if (!res.status === 200) {
+        dispatch({ type: "USER", payload: false });
         const error = new Error(res.error);
         throw error;
       }
     } catch (error) {
+      // dispatch({ type: "USER", payload: false });
       console.log(error);
     }
   };

@@ -14,7 +14,7 @@ try {
     // console.log("token =", token)
 
     const rootUser = await User.findOne({_id:verifyToken._id, "tokens.token" : token})
-    if(!rootUser) {throw new Error("User not find")}
+    if(!rootUser) {throw new Error("User not found")}
     req.token = token
     req.rootUser = rootUser
     req.userID = rootUser._id

@@ -8,11 +8,11 @@ import Contact from "./Components/Contact";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Errorpage from "./Components/Errorpage";
-import Logout from "./Components/Logout";
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { initialState, reducer } from "./reducer/UseReducer";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from "js-cookie";
 
 export const UserContext = createContext();
 
@@ -26,18 +26,23 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    const userAccessToken = Cookies.get("jwtoken");
+    console.log("userAccessToken =", userAccessToken)
+  }, [state])
+  
+
   return (
     <>
       <UserContext.Provider value={{ state, dispatch }}>
         <Router>
-          <Navbar />
+          <Navbar notify = {notificationHandler}/>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/About" element={<About />} />
             <Route exact path="/Contact" element={<Contact notify = {notificationHandler} />} />
             <Route exact path="/Login" element={<Login notify = {notificationHandler} />} />
             <Route exact path="/Signup" element={<Signup notify = {notificationHandler} />} />
-            <Route exact path="/Logout" element={<Logout notify = {notificationHandler} />} />
             <Route exact path="*" element={<Errorpage />} />
           </Routes>
           <ToastContainer/>

@@ -3,9 +3,43 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 import logo from "../Components/Images/logo1.png";
 import { UserContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ notify }) => {
   const { state, dispatch } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  console.log("state =", state);
+
+  const callLogoutPage = async () => {
+    try {
+      const res = await fetch("/logout", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      } else {
+        dispatch({ type: "USER", payload: false });
+        notify({
+          text: "Logout successfully",
+          position: "top-center",
+          status: "success",
+        });
+        console.log("Logout successfully");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const RenderMenu = () => {
     if (state) {
@@ -27,7 +61,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/Logout" className="nav-link">
+            <Link className="nav-link" onClick={callLogoutPage}>
               Logout
             </Link>
           </li>

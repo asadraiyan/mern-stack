@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -7,10 +7,13 @@ import { FaInstagramSquare } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Asadimg from "../Components/Images/asad.jpg";
 import Userimg from "../Components/Images/user.png";
+import { UserContext } from "../App";
 
 const About = () => {
 
   const [userdata, setUserData] = useState({})
+
+  const { state, dispatch } = useContext(UserContext);
 
 
   const navigate = useNavigate();
@@ -29,13 +32,16 @@ const About = () => {
       const data = await res.json();
       console.log(data);
       setUserData(data)
+      dispatch({ type: "USER", payload: true });
 
       if (!res.status === 200) {
         const error = new Error(res.error);
+        dispatch({ type: "USER", payload: false });
         throw error;
       }
     } catch (error) {
       console.log(error);
+      // dispatch({ type: "USER", payload: false });
       navigate("/login");
     }
   };
