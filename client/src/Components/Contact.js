@@ -73,8 +73,12 @@ const Contact = () => {
     });
 
     const data = await res.json();
-    if (!data) {
+
+    console.log(data)
+
+    if (!data || res.status === 422) {
       console.log("Message not send");
+      alert(data.error)
     } else {
       alert("Message send successfully");
       setUserData({...userdata, message : ""})
@@ -111,7 +115,7 @@ const Contact = () => {
         <div className="contact-container">
           <div className="small-container">
             <h1>Get in Touch</h1>
-            <form className="contact-field">
+            <form method="POST" className="contact-field">
               <div className="input-text">
                 <input
                   type="text"

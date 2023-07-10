@@ -100,7 +100,7 @@ router.get("/getdata", authenticate, async (req,res)=>{
 })
 
 
-router.get("/contact", authenticate, async (req,res)=>{
+router.post("/contact", authenticate, async (req,res)=>{
 try {
 
   const { name, email, phone, message } = req.body;
@@ -115,6 +115,10 @@ try {
   if(userContact){
 
     const userMessage =  await userContact.addMessage(name, email, phone, message)
+
+    await userContact.save()
+
+    res.status(201).json({message: "User contact successfully"})
     
   }
 
