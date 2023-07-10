@@ -36,7 +36,7 @@ const Login = () => {
   return (
     <>
       <section className="main-container">
-        <div className="signup-box">
+        <div className="login-box">
         <div className="signup-img">
           <figure>
             <img src={Loginimg} alt="Loginimg"  className="signup-pic"/>

@@ -37,7 +37,7 @@ const Home = () => {
       <div className="home-box">
       <span className='welcome'>Welcome</span>
       <h1 className='username'>{userName}</h1>
-      <h2 className='happy'>{show ? "Happy, to see you back!" : "We are the MERN developers"}</h2>
+      <h2 className='happy'>{show ? "Happy, to see you back!" : "The official website of MERN"}</h2>
       </div>
     </div>
   )
