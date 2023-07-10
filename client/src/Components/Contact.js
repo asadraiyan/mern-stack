@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Phoneimg from "../Components/Images/phone.jpg";
 import Emailimg from "../Components/Images/email.jpg";
 import Addressimg from "../Components/Images/address1.png";
-import { json } from "react-router-dom";
 const Contact = () => {
   const [userdata, setUserData] = useState({
     name: "",
@@ -11,7 +10,7 @@ const Contact = () => {
     message: "",
   });
 
-  const callHomePage = async () => {
+  const callContactPage = async () => {
     try {
       const res = await fetch("/getdata", {
         method: "GET",
@@ -39,7 +38,7 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    callHomePage();
+    callContactPage();
   }, []);
 
   const handleInputChange = (e) => {

@@ -230,6 +230,29 @@
   height: 90.8vh;
   width: 100%;
 }
+.home-box{
+  /* border: 2px solid red; */
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.username{
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.welcome{
+  font-size: 18px;
+  color: #0d6efd;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.happy{
+  letter-spacing: 1px;
+  font-weight: bold;
+}
 .about-container{
   display: flex;
   flex-direction: row;
