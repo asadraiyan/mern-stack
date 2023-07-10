@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Signupimg from "../Components/Images/signup.png"
 import { Link } from "react-router-dom";
 
-const Signup = () => {
+
+const Signup = ({notify}) => {
 
   const [userData,setUserData] = useState({
     name : "",
@@ -41,11 +42,19 @@ const Signup = () => {
 
     const data = await res.json()
     if(res.status === 422 || !data){
-      window.alert(data.error)
+      notify({
+        text: "Please fill all the details",
+        position: "top-center",
+        status: "error"
+    })
       console.log("Invalid Registration ")
     }
     else{
-      window.alert(data.message)
+      notify({
+        text: "Signup successfully",
+        position: "top-center",
+        status: "success"
+    })
       console.log("Registration successfull")
       navigate("/login")
     }

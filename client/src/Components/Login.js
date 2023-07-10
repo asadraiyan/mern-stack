@@ -3,7 +3,8 @@ import Loginimg from "../Components/Images/login-img.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 
-const Login = () => {
+
+const Login = ({notify}) => {
   const { state, dispatch } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
@@ -27,12 +28,21 @@ const Login = () => {
     const data = await res.json();
     console.log("data =", data);
     if (data.error || res.status === 400) {
-      window.alert(data.error);
+      notify({
+        text: "Invalid credentials",
+        position: "top-center",
+        status: "error"
+    })
       console.log("Invalid credentials");
+
     } else {
       dispatch({ type: "USER", payload: true });
-      window.alert(data.message);
-      console.log("Login successfull");
+      notify({
+        text: "Login successfully",
+        position: "top-center",
+        status: "success"
+    })
+      console.log("Login successfully");
       navigate("/");
     }
   };

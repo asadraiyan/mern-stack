@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Phoneimg from "../Components/Images/phone.jpg";
 import Emailimg from "../Components/Images/email.jpg";
 import Addressimg from "../Components/Images/address1.png";
-const Contact = () => {
+const Contact = ({notify}) => {
   const [userdata, setUserData] = useState({
     name: "",
     email: "",
@@ -77,9 +77,18 @@ const Contact = () => {
 
     if (!data || res.status === 422) {
       console.log("Message not send");
-      alert(data.error)
+      notify({
+        text: "Plese fill the message field",
+        position: "top-center",
+        status: "error"
+    })
+   
     } else {
-      alert("Message send successfully");
+      notify({
+        text: "Message send successfully",
+        position: "top-center",
+        status: "success"
+    })
       setUserData({...userdata, message : ""})
     }
   };

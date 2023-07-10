@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 
-const Logout = () => {
+const Logout = ({notify}) => {
   const { state, dispatch } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -23,6 +23,11 @@ const Logout = () => {
         throw error;
       } else {
         dispatch({ type: "USER", payload: false });
+        notify({
+            text: "Logout successfully",
+            position: "top-center",
+            status: "success"
+        })
         console.log("Logout successfully");
         navigate("/login");
       }

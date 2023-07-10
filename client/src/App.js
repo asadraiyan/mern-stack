@@ -11,10 +11,19 @@ import Errorpage from "./Components/Errorpage";
 import Logout from "./Components/Logout";
 import { createContext, useReducer } from "react";
 import { initialState, reducer } from "./reducer/UseReducer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UserContext = createContext();
 
 function App() {
+
+  const notificationHandler = (message) => {
+    toast[message.status](message.text, {
+      position: message.position
+    })
+  }
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
@@ -25,12 +34,13 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/About" element={<About />} />
-            <Route exact path="/Contact" element={<Contact />} />
-            <Route exact path="/Login" element={<Login />} />
-            <Route exact path="/Signup" element={<Signup />} />
-            <Route exact path="/Logout" element={<Logout />} />
+            <Route exact path="/Contact" element={<Contact notify = {notificationHandler} />} />
+            <Route exact path="/Login" element={<Login notify = {notificationHandler} />} />
+            <Route exact path="/Signup" element={<Signup notify = {notificationHandler} />} />
+            <Route exact path="/Logout" element={<Logout notify = {notificationHandler} />} />
             <Route exact path="*" element={<Errorpage />} />
           </Routes>
+          <ToastContainer/>
         </Router>
       </UserContext.Provider>
     </>
