@@ -10,42 +10,46 @@ import Signup from "./Components/Signup";
 import Errorpage from "./Components/Errorpage";
 import { createContext, useEffect, useReducer } from "react";
 import { initialState, reducer } from "./reducer/UseReducer";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const UserContext = createContext();
 
 function App() {
-
   const notificationHandler = (message) => {
     toast[message.status](message.text, {
-      position: message.position
-    })
-  }
+      position: message.position,
+    });
+  };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    const userAccessToken = Cookies.get("jwtoken");
-    console.log("userAccessToken =", userAccessToken)
-  }, [state])
-  
 
   return (
     <>
       <UserContext.Provider value={{ state, dispatch }}>
         <Router>
-          <Navbar notify = {notificationHandler}/>
+          <Navbar notify={notificationHandler} />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/About" element={<About />} />
-            <Route exact path="/Contact" element={<Contact notify = {notificationHandler} />} />
-            <Route exact path="/Login" element={<Login notify = {notificationHandler} />} />
-            <Route exact path="/Signup" element={<Signup notify = {notificationHandler} />} />
+            <Route
+              exact
+              path="/Contact"
+              element={<Contact notify={notificationHandler} />}
+            />
+            <Route
+              exact
+              path="/Login"
+              element={<Login notify={notificationHandler} />}
+            />
+            <Route
+              exact
+              path="/Signup"
+              element={<Signup notify={notificationHandler} />}
+            />
             <Route exact path="*" element={<Errorpage />} />
           </Routes>
-          <ToastContainer/>
+          <ToastContainer />
         </Router>
       </UserContext.Provider>
     </>

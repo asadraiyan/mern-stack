@@ -3,7 +3,7 @@ import Phoneimg from "../Components/Images/phone.jpg";
 import Emailimg from "../Components/Images/email.jpg";
 import Addressimg from "../Components/Images/address1.png";
 import { UserContext } from "../App";
-const Contact = ({notify}) => {
+const Contact = ({ notify }) => {
   const [userdata, setUserData] = useState({
     name: "",
     email: "",
@@ -75,28 +75,26 @@ const Contact = ({notify}) => {
         phone,
         message,
       }),
-
     });
 
     const data = await res.json();
 
-    console.log(data)
+    console.log(data);
 
     if (!data || res.status === 422) {
       console.log("Message not send");
       notify({
         text: "Plese fill the message field",
         position: "top-center",
-        status: "error"
-    })
-   
+        status: "error",
+      });
     } else {
       notify({
         text: "Message send successfully",
         position: "top-center",
-        status: "success"
-    })
-      setUserData({...userdata, message : ""})
+        status: "success",
+      });
+      setUserData({ ...userdata, message: "" });
     }
   };
 

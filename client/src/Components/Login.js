@@ -3,8 +3,7 @@ import Loginimg from "../Components/Images/login-img.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 
-
-const Login = ({notify}) => {
+const Login = ({ notify }) => {
   const { state, dispatch } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
@@ -31,17 +30,16 @@ const Login = ({notify}) => {
       notify({
         text: "Invalid credentials",
         position: "top-center",
-        status: "error"
-    })
+        status: "error",
+      });
       console.log("Invalid credentials");
-
     } else {
       dispatch({ type: "USER", payload: true });
       notify({
         text: "Login successfully",
         position: "top-center",
-        status: "success"
-    })
+        status: "success",
+      });
       console.log("Login successfully");
       navigate("/");
     }

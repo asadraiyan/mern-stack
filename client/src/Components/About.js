@@ -10,11 +10,9 @@ import Userimg from "../Components/Images/user.png";
 import { UserContext } from "../App";
 
 const About = () => {
-
-  const [userdata, setUserData] = useState({})
+  const [userdata, setUserData] = useState({});
 
   const { state, dispatch } = useContext(UserContext);
-
 
   const navigate = useNavigate();
 
@@ -31,7 +29,7 @@ const About = () => {
 
       const data = await res.json();
       console.log(data);
-      setUserData(data)
+      setUserData(data);
       dispatch({ type: "USER", payload: true });
 
       if (!res.status === 200) {
@@ -56,7 +54,11 @@ const About = () => {
         <form method="GET" className="about-container">
           <div className="img-container">
             <div className="profile-img">
-              <img src={userdata.name === "Asad Raiyan" ? Asadimg : Userimg } alt="Asadimg" className="asad-img" />
+              <img
+                src={userdata.name === "Asad Raiyan" ? Asadimg : Userimg}
+                alt="Asadimg"
+                className="asad-img"
+              />
             </div>
             <h2 className="title-name">Social Links</h2>
             <div className="social-container">

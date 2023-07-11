@@ -1,64 +1,66 @@
-import React, { useState} from "react";
-import { useNavigate } from 'react-router-dom';
-import Signupimg from "../Components/Images/signup.png"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Signupimg from "../Components/Images/signup.png";
 import { Link } from "react-router-dom";
 
-
-const Signup = ({notify}) => {
-
-  const [userData,setUserData] = useState({
-    name : "",
+const Signup = ({ notify }) => {
+  const [userData, setUserData] = useState({
+    name: "",
     email: "",
-    work : "",
+    work: "",
     phone: "",
     password: "",
-    confirmPassword : ""
-  })
+    confirmPassword: "",
+  });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleChange = (e)=>{
+  const handleChange = (e) => {
     const name = e.target.name;
-        const value = e.target.value;
-        setUserData({
-            ...userData,
-            [name]: value
-        })
-  }
+    const value = e.target.value;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
 
-  const handlePostData = async (e)=>{
-    e.preventDefault()
-    const{ name, email, phone, work, password, confirmPassword} = userData
+  const handlePostData = async (e) => {
+    e.preventDefault();
+    const { name, email, phone, work, password, confirmPassword } = userData;
 
     const res = await fetch("/register", {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json"
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body : JSON.stringify({
-        name, email, phone, work, password, confirmPassword
-      })
-    })
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        work,
+        password,
+        confirmPassword,
+      }),
+    });
 
-    const data = await res.json()
-    if(res.status === 422 || !data){
+    const data = await res.json();
+    if (res.status === 422 || !data) {
       notify({
         text: "Please fill all the details",
         position: "top-center",
-        status: "error"
-    })
-      console.log("Invalid Registration ")
-    }
-    else{
+        status: "error",
+      });
+      console.log("Invalid Registration ");
+    } else {
       notify({
         text: "Signup successfully",
         position: "top-center",
-        status: "success"
-    })
-      console.log("Registration successfull")
-      navigate("/login")
+        status: "success",
+      });
+      console.log("Registration successfull");
+      navigate("/login");
     }
-  }
+  };
   return (
     <>
       <section className="main-container">
@@ -70,49 +72,99 @@ const Signup = ({notify}) => {
                 <label htmlFor="name" className="label">
                   <i className="zmdi zmdi-account material-icons-name"></i>
                 </label>
-                <input type="text" name="name" value={userData.name} onChange={handleChange} className="input-field" placeholder="Your Name" />
+                <input
+                  type="text"
+                  name="name"
+                  value={userData.name}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Your Name"
+                />
               </div>
               <div className="input-form">
                 <label htmlFor="email">
                   <i className="zmdi zmdi-email material-icons-name"></i>
                 </label>
-                <input type="email" name="email" value={userData.email} onChange={handleChange} className="input-field" placeholder="Your Email" />
+                <input
+                  type="email"
+                  name="email"
+                  value={userData.email}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Your Email"
+                />
               </div>
               <div className="input-form">
                 <label htmlFor="phone">
                   <i className="zmdi zmdi-phone-in-talk material-icons-name"></i>
                 </label>
-                <input type="number" name="phone" value={userData.phone} onChange={handleChange} className="input-field" placeholder="Your Phone" />
+                <input
+                  type="number"
+                  name="phone"
+                  value={userData.phone}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Your Phone"
+                />
               </div>
               <div className="input-form">
                 <label htmlFor="work">
                   <i className="zmdi zmdi-slideshow material-icons-name"></i>
                 </label>
-                <input type="text" name="work" value={userData.work} onChange={handleChange} className="input-field"  placeholder="Your Profession" />
+                <input
+                  type="text"
+                  name="work"
+                  value={userData.work}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Your Profession"
+                />
               </div>
               <div className="input-form">
                 <label htmlFor="password">
                   <i className="zmdi zmdi-lock material-icons-name"></i>
                 </label>
-                <input type="password" name="password" value={userData.password} onChange={handleChange} className="input-field"  placeholder="Your Password" />
+                <input
+                  type="password"
+                  name="password"
+                  value={userData.password}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Your Password"
+                />
               </div>
               <div className="input-form">
                 <label htmlFor="confirmPassword">
                   <i className="zmdi zmdi-lock material-icons-name"></i>
                 </label>
-                <input type="password" name="confirmPassword" value={userData.confirmPassword} onChange={handleChange} className="input-field" placeholder="Confirm Your Password" />
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={userData.confirmPassword}
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Confirm Your Password"
+                />
               </div>
               <div className="button">
-                <input type="submit" name="signup" onClick={handlePostData} className="submit-btn" value= "Regiser" />
+                <input
+                  type="submit"
+                  name="signup"
+                  onClick={handlePostData}
+                  className="submit-btn"
+                  value="Regiser"
+                />
               </div>
             </form>
           </div>
           <div className="signup-img">
-          <figure>
-            <img src={Signupimg} alt="Signupimg"  className="signup-pic"/>
-          </figure>
-          <Link to="/Login" className="already">I am already register</Link>
-            </div>
+            <figure>
+              <img src={Signupimg} alt="Signupimg" className="signup-pic" />
+            </figure>
+            <Link to="/Login" className="already">
+              I am already register
+            </Link>
+          </div>
         </div>
       </section>
     </>
