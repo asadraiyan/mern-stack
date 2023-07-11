@@ -2,6 +2,10 @@ const dotenv = require("dotenv")
 const express = require("express")
 const app = express()
 const cookieparser = require("cookie-parser");
+const cors = require("cors");
+
+app.use(cors({ origin: "*" }));
+app.options("*", cors());
 
 dotenv.config({path: "./config.env"})
 
