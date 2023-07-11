@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 import logo from "../Components/Images/logo1.png";
-import { UserContext } from "../App";
+import { UserContext, baseUrl } from "../App";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ notify }) => {
@@ -14,7 +14,7 @@ const Navbar = ({ notify }) => {
 
   const callLogoutPage = async () => {
     try {
-      const res = await fetch("/logout", {
+      const res = await fetch(`${baseUrl}/logout`, {
         method: "GET",
         headers: {
           Accept: "application/json",

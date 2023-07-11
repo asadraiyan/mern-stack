@@ -390,3 +390,93 @@
 #title-heading{
   font-size: 18px;
 }
+
+/* media queries starts */
+
+@media only screen and (max-width: 1200px) {
+.signup-pic{
+  width: 240px;
+}
+.input-field{
+  width: 200px;
+}
+.signup-content{
+  width: 230px;
+  height: 375px;
+}
+}
+@media only screen and (max-width: 1000px) {
+  .signup-box{
+   flex-direction: column-reverse;
+   height: 80vh;
+   border: none;
+   box-shadow: none;
+  }
+  .login-box{
+    flex-direction: column;
+    height: 80vh;
+    border: none;
+    box-shadow: none;
+    justify-content: center;
+   }
+   .contact-box{
+    flex-direction: column;
+    width: auto;
+    justify-content: space-between;
+    min-height: 250px;
+   }
+  .signup-pic{
+    width: 250px;
+    
+  }
+}
+@media only screen and (max-width: 450px) {
+  .input-field{
+    font-size: 17px;
+  }
+  .title{
+    font-size: 32px;
+  }
+  .logo{
+    width: 125px;
+  }
+  .login-content{
+    width: 250px;
+  }
+  .info-box{
+    width: 300px;
+    height: 60px;
+    gap: 20px;
+  }
+  .phone-style{
+    font-size: 17px;
+  }
+  .num-style{
+    font: 13px;
+  }
+  .phone-img{
+    width: 20px;
+    height: 35px;
+  }
+  .email-img {
+    width: 30px;
+    height: 35px;
+}
+.address-img {
+  width: 30px;
+  height: 35px;
+}
+.contact-container{
+  width: 80%;
+  margin-top: 20px;
+  border: none;
+  box-shadow: none;
+  align-items: center;
+}
+.msg-txt {
+  font-size: 17px;
+  height: 75x;
+}
+
+}
+

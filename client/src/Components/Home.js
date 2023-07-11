@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext, baseUrl } from "../App";
 
 const Home = () => {
   const [userName, setUserName] = useState("");
   const [show, setShow] = useState(false);
 
-  const { state, dispatch } = useContext(UserContext);
+  const { dispatch } = useContext(UserContext);
 
   const callHomePage = async () => {
     try {
-      const res = await fetch("/getdata", {
+      const res = await fetch(`${baseUrl}/getdata`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

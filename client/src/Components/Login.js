@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import Loginimg from "../Components/Images/login-img.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../App";
+import { UserContext, baseUrl } from "../App";
 
 const Login = ({ notify }) => {
-  const { state, dispatch } = useContext(UserContext);
+  const { dispatch } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,7 @@ const Login = ({ notify }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await fetch("/signin", {
+    const res = await fetch(`${baseUrl}/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

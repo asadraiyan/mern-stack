@@ -8,12 +8,14 @@ import Contact from "./Components/Contact";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Errorpage from "./Components/Errorpage";
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { initialState, reducer } from "./reducer/UseReducer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const UserContext = createContext();
+
+export const baseUrl = "https://mern-stack-asadraiyan.vercel.app"
 
 function App() {
   const notificationHandler = (message) => {

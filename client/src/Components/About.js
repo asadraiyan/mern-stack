@@ -8,17 +8,19 @@ import { useNavigate } from "react-router-dom";
 import Asadimg from "../Components/Images/asad.jpg";
 import Userimg from "../Components/Images/user.png";
 import { UserContext } from "../App";
+import { baseUrl } from "../App";
+
 
 const About = () => {
   const [userdata, setUserData] = useState({});
 
-  const { state, dispatch } = useContext(UserContext);
+  const { dispatch } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const callAboutPage = async () => {
     try {
-      const res = await fetch("/about", {
+      const res = await fetch(`${baseUrl}/about`, {
         method: "GET",
         headers: {
           Accept: "application/json",

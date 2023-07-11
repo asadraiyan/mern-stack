@@ -3,6 +3,9 @@ import Phoneimg from "../Components/Images/phone.jpg";
 import Emailimg from "../Components/Images/email.jpg";
 import Addressimg from "../Components/Images/address1.png";
 import { UserContext } from "../App";
+import { baseUrl } from "../App";
+
+
 const Contact = ({ notify }) => {
   const [userdata, setUserData] = useState({
     name: "",
@@ -11,11 +14,11 @@ const Contact = ({ notify }) => {
     message: "",
   });
 
-  const { state, dispatch } = useContext(UserContext);
+  const { dispatch } = useContext(UserContext);
 
   const callContactPage = async () => {
     try {
-      const res = await fetch("/getdata", {
+      const res = await fetch(`${baseUrl}/getdata`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -127,7 +130,7 @@ const Contact = ({ notify }) => {
 
         <div className="contact-container">
           <div className="small-container">
-            <h1>Get in Touch</h1>
+            <div><h1>Get in Touch</h1></div>
             <form method="POST" className="contact-field">
               <div className="input-text">
                 <input
