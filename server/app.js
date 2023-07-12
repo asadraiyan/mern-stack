@@ -4,9 +4,7 @@ const app = express()
 const cookieparser = require("cookie-parser");
 const cors = require("cors");
 
-app.use(cors({
-    preflightContinue: true
-}));
+app.use(cors());
 
 dotenv.config({path: "./config.env"})
 
