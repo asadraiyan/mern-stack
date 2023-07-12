@@ -4,7 +4,13 @@ const app = express()
 const cookieparser = require("cookie-parser");
 const cors = require("cors");
 
-app.use(cors({ origin: "*" }));
+app.use(cors(
+    { 
+        origin: ["https://main--asad-mern-register.netlify.app"],
+        methods: ["POST", "GET"],
+        credentials: true 
+    }
+));
 app.options("*", cors());
 
 dotenv.config({path: "./config.env"})
