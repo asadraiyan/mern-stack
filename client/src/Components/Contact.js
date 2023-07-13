@@ -42,7 +42,7 @@ const Contact = ({ notify }) => {
         throw error;
       }
     } catch (error) {
-      // dispatch({ type: "USER", payload: false });
+    
       console.log(error);
     }
   };

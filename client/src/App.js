@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const UserContext = createContext();
 
-export const baseUrl = "https://mern-stack-asadraiyan.vercel.app"
+export const baseUrl = "https://mern-stack-asadraiyan.vercel.app";
 
 function App() {
   const notificationHandler = (message) => {

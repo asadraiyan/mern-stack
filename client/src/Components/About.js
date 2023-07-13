@@ -41,7 +41,6 @@ const About = () => {
       }
     } catch (error) {
       console.log(error);
-      // dispatch({ type: "USER", payload: false });
       navigate("/login");
     }
   };

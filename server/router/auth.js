@@ -114,16 +114,13 @@ router.post("/contact", authenticate, async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-
 });
 
-
 // Logout page
-router.get("/logout", async (req,res)=>{
-  console.log("Hello my contact page")
-  res.clearCookie("jwtoken", {path : "/"})
-  res.status(200).send("User logout successfully")
-
-})
+router.get("/logout", async (req, res) => {
+  console.log("Hello my contact page");
+  res.clearCookie("jwtoken", { path: "/" });
+  res.status(200).send("User logout successfully");
+});
 
 module.exports = router;
