@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 const authenticate = require("../middleware/authenticate");
 
 require("../db/conn");
@@ -66,7 +66,7 @@ router.post("/signin", async (req, res) => {
       if (!isMatch) {
         res.status(400).json({ error: "Invalid credential" });
       } else {
-        res.json({ message: "User is login successfully" });
+        res.json({ message: "User logged in successfully" });
       }
     } else {
       res.status(400).json({ error: "Invalid credential" });
