@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
-import { UserContext, baseUrl } from "../App";
+import { UserContext } from "../App";
+import { authHeader } from "../constants/header";
+import { baseUrl } from "../constants/apiConfig";
 
 const Home = () => {
   const [userName, setUserName] = useState("");
@@ -11,9 +13,8 @@ const Home = () => {
     try {
       const res = await fetch(`${baseUrl}/getdata`, {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: authHeader(),
+        credentials: "include",
       });
 
       const data = await res.json();

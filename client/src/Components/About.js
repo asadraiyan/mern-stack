@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Asadimg from "../Components/Images/asad.jpg";
 import Userimg from "../Components/Images/user.png";
 import { UserContext } from "../App";
-import { baseUrl } from "../App";
-
+import { baseUrl } from "../constants/apiConfig";
 
 const About = () => {
   const [userdata, setUserData] = useState({});

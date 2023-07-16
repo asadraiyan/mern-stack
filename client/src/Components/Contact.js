@@ -3,8 +3,7 @@ import Phoneimg from "../Components/Images/phone.jpg";
 import Emailimg from "../Components/Images/email.jpg";
 import Addressimg from "../Components/Images/address1.png";
 import { UserContext } from "../App";
-import { baseUrl } from "../App";
-
+import { baseUrl } from "../constants/apiConfig";
 
 const Contact = ({ notify }) => {
   const [userdata, setUserData] = useState({
@@ -23,6 +22,7 @@ const Contact = ({ notify }) => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       });
 
       const data = await res.json();
@@ -42,7 +42,6 @@ const Contact = ({ notify }) => {
         throw error;
       }
     } catch (error) {
-    
       console.log(error);
     }
   };
@@ -67,11 +66,12 @@ const Contact = ({ notify }) => {
 
     const { name, email, phone, message } = userdata;
 
-    const res = await fetch("/contact", {
+    const res = await fetch(`${baseUrl}/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({
         name,
         email,
@@ -130,7 +130,9 @@ const Contact = ({ notify }) => {
 
         <div className="contact-container">
           <div className="small-container">
-            <div><h1>Get in Touch</h1></div>
+            <div>
+              <h1>Get in Touch</h1>
+            </div>
             <form method="POST" className="contact-field">
               <div className="input-text">
                 <input

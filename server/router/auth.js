@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
 const authenticate = require("../middleware/authenticate");
 
 require("../db/conn");
@@ -56,8 +55,6 @@ router.post("/signin", async (req, res) => {
       const isMatch = await bcrypt.compare(password, userLogin.password);
 
       const token = await userLogin.generateAuthToken();
-      console.log(token);
-
       res.cookie("jwtoken", token, {
         expires: new Date(Date.now() + 24792000000),
         httpOnly: true,
@@ -93,7 +90,6 @@ router.post("/contact", authenticate, async (req, res) => {
     const { name, email, phone, message } = req.body;
 
     if (!name || !email || !phone || !message) {
-      console.log("error in contact form");
       return res.status(422).json({ error: "Please fill the contact form" });
     }
 
@@ -118,7 +114,6 @@ router.post("/contact", authenticate, async (req, res) => {
 
 // Logout page
 router.get("/logout", async (req, res) => {
-  console.log("Hello my contact page");
   res.clearCookie("jwtoken", { path: "/" });
   res.status(200).send("User logout successfully");
 });

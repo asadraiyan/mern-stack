@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import Loginimg from "../Components/Images/login-img.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext, baseUrl } from "../App";
+import { UserContext } from "../App";
+import { baseUrl } from "../constants/apiConfig";
 
 const Login = ({ notify }) => {
   const { dispatch } = useContext(UserContext);
@@ -18,6 +19,7 @@ const Login = ({ notify }) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({
         email,
         password,

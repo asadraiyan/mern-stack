@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 import logo from "../Components/Images/logo1.png";
-import { UserContext, baseUrl } from "../App";
+import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../constants/apiConfig";
 
 const Navbar = ({ notify }) => {
   const { state, dispatch } = useContext(UserContext);
@@ -119,7 +120,7 @@ const Navbar = ({ notify }) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto gap-3">
+          <ul className="navbar-nav ms-auto gap-3 fs-5">
             <RenderMenu />
           </ul>
         </div>
