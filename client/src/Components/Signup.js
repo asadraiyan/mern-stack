@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Signupimg from "../Components/Images/signup.png";
 import { Link } from "react-router-dom";
-
+import { authHeader } from "../constants/header";
 
 const Signup = ({ notify }) => {
   const [userData, setUserData] = useState({
@@ -31,9 +31,7 @@ const Signup = ({ notify }) => {
 
     const res = await fetch("/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: authHeader(),
       body: JSON.stringify({
         name,
         email,

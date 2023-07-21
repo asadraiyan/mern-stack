@@ -7,10 +7,13 @@ const cors = require("cors");
 // app.use(cors({origin: "*"}))
 // app.options("*", cors());
 
-app.use("*" , cors({
-  origin : true,
-  credentials : true
-}))
+app.use(
+  "*",
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
 dotenv.config({ path: "./config.env" });
 
