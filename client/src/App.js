@@ -49,7 +49,7 @@ function App() {
             />
             <Route exact path="*" element={<Errorpage />} />
           </Routes>
-          <ToastContainer />
+          <ToastContainer autoClose={1500} />
         </Router>
       </UserContext.Provider>
     </>

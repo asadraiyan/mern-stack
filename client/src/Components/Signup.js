@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Signupimg from "../Components/Images/signup.png";
 import { Link } from "react-router-dom";
 import { authHeader } from "../constants/header";
+import { baseUrl } from "../constants/apiConfig";
 
 const Signup = ({ notify }) => {
   const [userData, setUserData] = useState({
@@ -29,7 +30,7 @@ const Signup = ({ notify }) => {
     e.preventDefault();
     const { name, email, phone, work, password, confirmPassword } = userData;
 
-    const res = await fetch("/register", {
+    const res = await fetch(`${baseUrl}/register`, {
       method: "POST",
       headers: authHeader(),
       body: JSON.stringify({
